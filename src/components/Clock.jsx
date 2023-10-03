@@ -21,14 +21,14 @@ const Clock = () => {
         seconds: time.getSeconds().toString().padStart(2,0)
     }
     return (
-        <div className='app__display'>
+        <>
             <h1 className='app__time'>
                 <span className='time__hours'>{displayDate.hours}</span>:<span className='time__minutes'>{displayDate.minutes}</span><span className='time__seconds'>{displayDate.seconds}</span></h1>
             <div className='app__date'>
                 <h2 className='date__MDY'>{months[displayDate.month]} {displayDate.day}, {displayDate.year}</h2>
                 <h2 className='date__WD'>{days[displayDate.weekDay]}</h2>
             </div>
-        </div>
+        </>
     )
 };
 

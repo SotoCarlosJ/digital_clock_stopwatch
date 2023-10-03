@@ -1,21 +1,27 @@
-import { useState } from 'react';
-import { Display } from './components/Display';
+import React, { useState } from 'react';
+import { Clock } from './components/Clock';
+import { Stopwatch } from './components/Stopwatch';
+import { List } from './components/List';
+import { Button } from './components/Button';
 import './App.css';
 
-const displayTypes = ['clock', 'stopwatch'];
+const display = [
+  {id: 1, title: 'Clock', component: <Clock />}, 
+  {id: 2, title: 'Stopwatch', component: <Stopwatch />},
+];
 
 function App() {
-  const [displayIndex, setDisplayIndex] = useState(1);
+  const [id, setID] = useState(1);
 
-  const handleSwitch = () => {
-    displayIndex === 0 ? setDisplayIndex(1) : setDisplayIndex(0)
-  }
+  const switchDisplay = (param) => {
+    setID(param);
+  };
 
   return (
     <>
       <div className='app'>
-        <Display display={displayTypes[displayIndex]}/>
-        <button onClick={() => handleSwitch()}>Switch to: {displayTypes[displayIndex]}</button>
+        {display.find(item => item.id === id).component}
+        <List array={display} renderButton={(item) => <Button item={item} clicked={(id) => switchDisplay(id)}/>}/>
         <p className="read-the-docs">Carlos Soto || 2023</p>
       </div>
     </>
